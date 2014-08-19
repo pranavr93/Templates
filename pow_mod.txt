@@ -1,0 +1,22 @@
+long long degree(long long a, long long k) {        //returns a^k mod p in O(logk)
+   ll temp = 1;
+   ll cur = a;
+  while (k) {
+    if (k%2) {
+      temp = (temp*cur)%mod;
+
+    }
+    k /= 2;
+    cur = (cur*cur)%mod;
+
+  }
+  return temp;
+}
+
+
+One line : 
+
+ll degree(ll a,ll k){ll temp = 1;ll cur = a;while (k) {if (k%2)temp=(temp*cur)%mod;k/=2;cur=(cur*cur)%mod;}return temp;}
+
+
+

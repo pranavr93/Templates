@@ -1,0 +1,19 @@
+// This template is useful for finding a*b mod c when a*b >2^64 and c is close to 2^64
+
+long long mul_mod(long long a,long long b,long long MOD)
+{
+	long long res=0;
+	while(b)
+	{
+		if(b&1)
+		{
+			res+=a;
+			if(res>=MOD) res-=MOD;
+		}
+		a<<=1;
+		if(a>=MOD) a-=MOD;
+		b>>=1;
+	}
+	return res;
+}
+

@@ -1,0 +1,48 @@
+#include<iostream>
+#include<cstdio>
+using namespace std;
+#define MAX 100007
+int T[MAX+1]; //Define a space for BIT
+int a[MAX+1];
+
+//function to update
+void update(int idx, int val)
+{
+    while(idx<=MAX)
+    {
+        T[idx]+=val;
+        idx+=(idx&-idx);
+    }
+}
+//function to query
+int query(int idx)
+{
+    int sum=0;
+    while(idx>0)
+    {
+        sum+=T[idx];
+        idx-=(idx&-idx);
+    }
+    return sum;
+}
+int main()
+{
+     int n,i,q;
+     cin>>n;
+     for(i=1;i<=n;i++)
+     {
+          cin>>a[i];
+          update(i,a[i]);
+     }
+
+
+     cout<<"Enter Queries: ";
+     cin>>q;
+     while(q -->0)
+     {
+          cin>>i;
+          cout<<query(i)<<endl;
+     }
+        return 0;
+}
+
