@@ -1,0 +1,31 @@
+// Check number of occurences of pattern in v . Pass two arrays
+
+vector<int> zFunction(vector<int> &s) {
+    int n = (int) s.size();
+    vector<int> z (n);
+    for (int i=1, l=0, r=0; i<n; ++i) {
+        if (i <= r)
+            z[i] = min (r-i+1, z[i-l]);
+        while (i+z[i] < n && s[z[i]] == s[i+z[i]])
+            ++z[i];
+        if (i+z[i]-1 > r)
+            l = i,  r = i+z[i]-1;
+    }
+    return z;
+}
+
+int findNumberOfOccurences(vector<int> &v, vector<int> &pattern) {
+    if (pattern.size() == 0) return v.size() + 1;
+
+    vector<int> str = pattern;
+    str.insert(str.end(), v.begin(), v.end());
+    vector<int> z = zFunction(str);
+
+    int result = 0;
+
+    for (int i = pattern.size() ; i < z.size() ; i++) {
+        if (z[i] >= pattern.size()) result++;
+    }
+        
+    return result;
+}

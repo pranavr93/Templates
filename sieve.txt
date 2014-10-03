@@ -1,0 +1,19 @@
+#define PRIMES_TILL 1234567
+#define NN PRIMES_TILL
+bool isPrime[];
+vector<ll> prime;
+
+void sieve(){
+    memset(isPrime,true,sizeof(bool)*NN);
+   // isPrime.set();
+    for(ll i= 2;i<sqrt(NN);i++){
+        if(!isPrime[i])continue;
+        for(ll j = i*i ; j < NN;j+=i){
+            isPrime[j] = 0;
+        }
+    }
+    for(ll i=2;i<NN;i++){
+        if(isPrime[i])
+            prime.pb(i);
+    }
+}
