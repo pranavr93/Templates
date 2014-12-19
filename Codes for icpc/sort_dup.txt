@@ -1,0 +1,5 @@
+//Sorts and removes duplicates of all elements in a
+
+vector<int> a; // Assume contains all elements
+set<int> b(a.begin(),a.end());  
+vector<int> c(b.begin(),b.end()); 
